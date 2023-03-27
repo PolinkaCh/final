@@ -1,0 +1,51 @@
+.whyWe_header{
+    font-size:45px;
+    line-height:54px;
+}
+.whyWe_slider {
+    margin:80px 0
+}
+.whyWe_picture{
+    overflow: hidden;
+    width: 100%;
+}
+.whyWe_slider{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-slider {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    height: 39px;
+} 
+
+.fullCards {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:860px){
+    .whyWe_header{
+        font-size:28px;
+        line-height:34px;
+        margin-top: 55px;
+    }
+    .whyWe_picture {
+        overflow: hidden;
+        width: 106%;
+    }
+    .whyWe_picture svg {
+        display: block;
+        width: 860px;
+        height: 560px;
+    }
+    .fullCards {
+        width: 75%;
+    }
+    .whyWe_slider {
+        margin:80px -14px
+    }
+}

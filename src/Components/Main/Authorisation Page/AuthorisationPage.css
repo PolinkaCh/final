@@ -1,0 +1,47 @@
+.authorisation{
+    display: flex;
+    margin: 60px 0  103px
+}
+
+.authorisation_header_pic{
+    text-align: center;
+}
+.authorisation_form_lock{
+    position: absolute;
+    left: 30px;
+    top: -50px;
+}
+.authorisation_form{
+    position: relative;
+}
+.authorisation_form_register{
+    margin-left: 80px;
+}
+@media screen and (max-width:860px){
+    .authorisation_header_item{
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .authorisation{
+        display: flex;
+        flex-direction: column;
+    }
+    .authorisation_form_register{
+        margin: 0px 0 400px;
+    }
+    .authorisation_form_lock{
+        left: 80px;
+        top: -70px;
+    }
+    .authorisation_header{
+        position: relative;
+    }
+    .authorisation_header_pic{
+        position: absolute;
+        top: 750px;
+    }
+    .authorisation_header_item{
+        margin-bottom: 100px;
+    }
+}
+

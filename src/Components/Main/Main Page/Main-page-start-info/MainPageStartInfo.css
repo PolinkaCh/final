@@ -1,0 +1,45 @@
+.mainPageStartInfo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.startInfo{
+    display: flex;
+    flex-direction: column;
+}
+.startInfo_first{
+    font-size:60px;
+    line-height:72px;
+}
+.startInfo_second{  
+    margin: 20px 0 70px;
+}
+.startInfo_btn{
+    width:335px;
+    margin-bottom: 199px;
+}
+
+@media screen and (max-width:860px){
+    .mainPageStartInfo{
+        flex-direction: column;
+    }
+    .startInfo_first{
+        font-weight: 900;
+        font-size:28px;
+        line-height:34px;
+    }
+    .startInfo_second{
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .startInfo_picture{
+        width: auto;
+    }
+    .startInfo_second{  
+        margin: 19px 0 32px;
+    }
+    .startInfo_btn{
+        margin-bottom: 39px;
+    }
+}

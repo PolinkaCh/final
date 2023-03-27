@@ -1,0 +1,24 @@
+{
+    "Items": [
+        {
+            "picture":"/images/1ItemSlider.svg",
+            "descr":"Высокая и оперативная скорость обработки заявки"
+        },
+        {
+            "picture":"/images/2ItemSlider.svg",
+            "descr":"Огромная комплексная база данных, обеспечивающая объективный ответ на запрос"
+        },
+        {
+            "picture":"/images/3ItemSlider.svg",
+            "descr":"Защита конфеденциальных сведений, не подлежащих разглашению по федеральному законодательству"
+        },
+        {
+            "picture":"/images/2ItemSlider.svg",
+            "descr":"Точные сведения"
+        },
+        {
+            "picture":"/images/3ItemSlider.svg",
+            "descr":"Надёжный результат"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+.features {
+    color: white;
+    padding: 17px 28px;
+    width: 5vw;
+}
+.loader{
+    text-align: center;
+}
+.not-active{
+    display: none;
+}
+table {
+    width: 85vw;
+    border-collapse: collapse;
+}
+td {
+    padding: 18px 18px 15px;
+    text-align: center;
+}
+.features-center td:not(:nth-child(1)) {
+    border-right: 2px solid  #949494;
+}
+.table{
+    border: 2px solid #029491;
+    border-radius: 5px;
+    padding-right: 5px;
+}
+
+
+
+

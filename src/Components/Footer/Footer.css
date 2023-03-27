@@ -1,0 +1,28 @@
+.footer {
+    background-color:#029491;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:25px 45px;
+    margin:0 -60px;
+}
+.info_font {
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    font-family: 'Inter-Regular','Inter', sans-serif;    
+}
+@media  screen and (max-width:860px) {
+    .info_font {
+       text-align: right;  
+    }
+    .footer {
+        padding: 25px 18px; 
+        margin: -15px;
+    }
+    .footer_logo {
+        width: 111px;
+        height: 111px;
+    }   
+}

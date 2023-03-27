@@ -1,0 +1,22 @@
+.report_header{
+    font-size: 30px;
+    line-height: 36px;
+}
+.report_paragraph{
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    font-family: 'Inter-Regular','Inter', sans-serif;  
+    color: #949494;
+}
+.report_table {
+    display: flex;
+    align-items: center;
+    width:100%;
+}
+@media  screen and (max-width:860px) {
+    .report_header{
+        font-size: 28px;
+        line-height: 34px;
+    }
+}

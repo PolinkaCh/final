@@ -1,0 +1,78 @@
+.RegisterForm {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding:25px;
+}
+.slider_switcher{
+    display: flex;
+    justify-content: center;
+}
+.slider_switcher_item {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    padding: 8px;
+    border-bottom: 2px solid #C7C7C7;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: white;
+    cursor: pointer;
+    width:213px;
+    margin-bottom: 30px;
+}
+.slider_switcher_item:first-child {
+    margin-right: 15px;
+    width:151px;
+}
+.slider_switcher_item:hover {
+    border-bottom: 2px solid #029491;
+}
+.form_title{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    color: #949494;
+    font-family: 'Inter-Regular','Inter', sans-serif; 
+}
+.form_input_authorisation{
+    width: 379px;
+    margin-bottom: 25px;
+}
+.fieldset {
+    border:none;
+}
+.form-buttons{
+    display: flex;
+    flex-direction: column;
+}
+.btn-login {
+    border:none;
+    background-color: white;
+    width:100%
+}
+.btn-restore{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    text-decoration-line: underline;
+    color: #5970FF;
+    font-family: 'Inter-Regular','Inter', sans-serif; 
+    border: none;
+    background-color: white;
+    margin: 15px 0 30px;
+    cursor: pointer;
+}
+.form_login_through{
+    display: flex;
+    justify-content: flex-start;
+}
+@media screen and (max-width:860px){
+    .form_input_authorisation {
+        width: 300px;
+    }
+
+}

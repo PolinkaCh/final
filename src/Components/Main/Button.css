@@ -1,0 +1,18 @@
+.btn-main{
+    background: #5970FF;
+    border-radius: 5px;
+    padding: 14px 64px;
+    width: 100%;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    font-family: 'Inter-Regular','Inter', sans-serif;    
+    cursor: pointer;
+}
+.btn-main:disabled {
+   opacity: 0.6
+
+
+}

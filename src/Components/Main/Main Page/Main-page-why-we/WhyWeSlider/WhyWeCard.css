@@ -1,0 +1,31 @@
+.fullCard_slider{
+    width:400px;
+    height: 200px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: block;
+}
+
+.fullCard_slider.not-active {
+    display: none;
+}
+
+.fullCard_slider_text{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'Inter-Regular','Inter', sans-serif; 
+}
+ @media screen and (max-width: 1300px){
+    .fullCard_slider{
+        width:280px;
+    }
+    
+ }
+ @media screen and (max-width:800px){
+    .non_width {
+        display: none;
+    } 
+    
+ }
