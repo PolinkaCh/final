@@ -13,10 +13,51 @@ export const signInFailure = (error) => {
         payload:error
     }
 }
+export const setAuth = (id, value) => {   
+    return {
+        type: "AUTH",
+        id, value
+    }
+}
+export const invalidLogin = (err) => {   
+    return {
+        type: "INVALIDLOGIN",
+        err
+    }
+}
+export const validateLogin = (log) => {   
+    return (dispatch) => {
+        if(log.includes (+7) || log.includes(8)){
+            if (/[^0-9]/.test(log)){
+            const error = "Введите корректные данные"
+            dispatch (invalidLogin(error))}
+            else {
+                const error = false
+                dispatch (invalidLogin(error))
+            }
+        }
+    }
+}
+export const setAuthVal = (id, value)=> {
+    return (dispatch, getState) => {
+        dispatch(setAuth(id, value))
+        const {login} = getState() 
+        const log = login.login
+         if (id = "login"){
+            dispatch (validateLogin(log))}
+        if ((login.password !=='') && (login.login!=='')){
+            const disabled = false
+            dispatch(setDisabled(disabled))
+        } else {
+            const disabled = true
+            dispatch(setDisabled(disabled))
+        }
+}
+}
 
 export const signInRequest = () => {
     return (dispatch, getState) => {
-        const {login} = getState()
+        const {login,search} = getState()
         const userData = {
             login: login.login,
             password: login.password
@@ -27,6 +68,8 @@ export const signInRequest = () => {
             if (response.data.accessToken){
                 localStorage.setItem ('user', JSON.stringify(response.data));
                 dispatch(signInSuccess(response.data))
+                const disabled = !search.disabled
+                dispatch(setDisabled(disabled))
               }
          })
         .catch((error) => { 
@@ -105,14 +148,77 @@ export const setDisabled = (dis) => {
         dis
     }
 }
-
+export const InvalidNum = (err) => {   
+    return {
+        type: "INVALIDNUM",
+        err
+    }
+}
+export const validateNum = (num) => {   
+    return (dispatch) => {
+        if (!num.length){
+            const error = "Обязательное поле"
+            dispatch(InvalidNum(error))      
+        } else {
+            const error = false
+            dispatch(InvalidNum(error))
+        }
+        if (num > 1000 || num < 1){
+            const error = "Введите корректные данные"
+            dispatch(InvalidNum(error))      
+        }
+    }   
+}
+export const InvalidDates = (err) => {   
+    return {
+        type: "INVALIDDATES",
+        err
+    }
+}
+export const validateDates = (dateStart,dateEnd) => {   
+    return (dispatch) => {
+        if (!dateStart.length || !dateEnd.length){
+            const error = "Обязательное поле"
+            dispatch(InvalidDates(error))      
+        } else {
+            const error = false
+            dispatch(InvalidDates(error))
+        }
+        if (dateEnd.length && dateStart > dateEnd){
+            const error = "Введите корректные данные"
+            dispatch(InvalidDates(error))      
+        } else {
+            const error = false
+            dispatch(InvalidDates(error))
+        }
+    }   
+}
 
 export const setSearchVal = (id, value) => {   
     return (dispatch, getState) => {
         dispatch(setSearch(id, value))
         const {search} = getState() 
+        const inn = search.inn
+        const number = search.number_docs
+        const dateStart = search.rangeStart
+        const dateEnd = search.rangeEnd
+        switch(id){
+        case (id = "inn"):
+            dispatch (validateInn(inn));
+            break;
+        case(id="number_docs"):        
+            dispatch (validateNum(number));
+            break;
+        case(id="rangeStart"||"rangeEnd"):
+            dispatch(validateDates(dateStart,dateEnd))
+            break;
+        } 
+
         if ((search.inn !=='') && (search.number_docs!=='') && (search.rangeStart!=='') && (search.rangeEnd!=='')){
-            const disabled = !search.disabled
+            const disabled = false
+            dispatch(setDisabled(disabled))
+        }else {
+            const disabled = true
             dispatch(setDisabled(disabled))
         }
     } 
@@ -153,10 +259,77 @@ export const histogramSearchEnd = (val) => {
         val
     }
 }
+export const innValidation =(result)=> {
+    return {
+        type: "INNVALID",
+        result
+    }
+}
+export const innValidError =(error,errorMessage)=> {
+    return {
+        type: "INNVALIDERROR",
+        error,errorMessage
+    }
+}
+export const validateInn =(inn)=> {
+    return (dispatch) => {  
+            let result = false;
+            if (typeof inn === 'number') {
+                inn = inn.toString();
+            } else if (typeof inn !== 'string') {
+                inn = '';
+            }
+            if (!inn.length) {
+                const errorCode = 1;
+                const errorMessage = 'Обязательное поле';
+                dispatch (innValidError(errorCode,errorMessage))
+            } else if (/[^0-9]/.test(inn)) {
+                const errorCode = 2;
+                const errorMessage = 'ИНН может состоять только из цифр';
+                dispatch (innValidError(errorCode,errorMessage))
+            } else if ([10, 12].indexOf(inn.length) === -1) {
+                const errorCode = 3;
+                const errorMessage = 'Введите корректные данные';
+                dispatch (innValidError(errorCode,errorMessage))
+            } else {
+                var checkDigit = function (inn, coefficients) {
+                    var n = 0;
+                    for (var i in coefficients) {
+                        n += coefficients[i] * inn[i];
+                    }
+                    return parseInt(n % 11 % 10);
+                };
+                switch (inn.length) {
+                    case 10:
+                        var n10 = checkDigit(inn, [2, 4, 10, 3, 5, 9, 4, 6, 8]);
+                        if (n10 === parseInt(inn[9])) {
+                            result = true
+                            const errorCode = false;
+                            dispatch (innValidError(errorCode))
+                        }
+                        break;
+                    case 12:
+                        var n11 = checkDigit(inn, [7, 2, 4, 10, 3, 5, 9, 4, 6, 8]);
+                        var n12 = checkDigit(inn, [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]);
+                        if ((n11 === parseInt(inn[10])) && (n12 === parseInt(inn[11]))) {
+                            result = true
+                            const errorCode = false;
+                            dispatch (innValidError(errorCode))
+                        }
+                        break;
+                }
+                if (!result) {
+                    const errorCode = 4;
+                    const errorMessage = 'Введите корректные данные';
+                    dispatch (innValidError(errorCode,errorMessage))
+                }
+            }
+    }
+}
 
 export const searchStart = () => {
-    return (dispatch, getState) => {
-        const {search, login} = getState();
+    return (dispatch, getState) => {  
+        const {search, login} = getState();    
         const searchData = {
             "issueDateInterval": {
               "startDate": search.rangeStart,

@@ -3,12 +3,13 @@ import Button from "../../../Button";
 import './RatesCard.css'
 import Ticks from "./static-rates-card/tick.svg"
 import uniqid from "uniqid"
+import { connect } from 'react-redux';
 
 
 function RatesCard(props){
-    const {card, active} = props
+    const {card, active, activeRate} = props
     return(
-            <div className="RatesCard_description" style = {{boxShadow: active ? "0px 0px 20px #FFB64F": "0px 0px 20px rgba(0, 0, 0, 0.2);" }}>
+            <div className="RatesCard_description" style = {{boxShadow: active && activeRate === card.title && card.title === "Beginner"? "0px 0px 20px #FFB64F": activeRate === card.title && card.title === "Pro"? "0px 0px 20px #7CE3E1" :"" }}>
                 <div className="RatesCard_description_header"
                 style={{backgroundColor: 
                         card.title === "Beginner" ? "#FFB64F" :
@@ -25,7 +26,7 @@ function RatesCard(props){
                 </div>
                 <div className="RatesCard_description_main">
                     <div className="main_price">
-                        {active ? <div className="active_rate">Текущий тариф</div>: ""}
+                        {active && activeRate === card.title ? <div className="active_rate">Текущий тариф</div>: ""}
                         <div className="main_price_number">
                             <div className="newPrice">{card.price}</div>
                             <div className="oldPrice">{card.oldPrice}</div>
@@ -44,10 +45,15 @@ function RatesCard(props){
                         </div>)
                         })}
                     </div>
-                    <Button className='btn-rates' title = {active ? "Перейти в личный кабинет" :"Подробнее" } />
+                    <Button className='btn-rates' title = {active && activeRate === card.title ? "Перейти в личный кабинет" :"Подробнее" } />
              </div>
             </div>
             
     )
 }
-export default RatesCard
+const mapStateToProps = function(state) {
+    return {
+      activeRate: state.getInfo.active
+    }
+  }
+export default connect(mapStateToProps)(RatesCard)

@@ -22,8 +22,17 @@
     box-sizing: border-box;
 }
 .full_main{
-  z-index: 1;
+    z-index: 1;
 }
+.error_msg{
+    font-size: 12px;
+    line-height: 15px;
+    color:#FF5959;
+    width: 250px;
+    margin-top: -35px;
+    text-align:center
+}
+
 @keyframes rotating {
   from{
       transform: rotate(0deg);

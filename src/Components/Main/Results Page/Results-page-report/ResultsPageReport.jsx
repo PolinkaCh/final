@@ -10,7 +10,7 @@ import Report from './report.json'
 
 
 function ResultsPageReport (props){
-    const [end, setEnd] = useState(props.start ? 7: props.hists.data[0].data.length < 7 ? props.hists.data[0].data.length: 7 )
+    const [end, setEnd] = useState(props.start ? 7: props.hists.data[0].data.length < 7 ? props.hists.data[0].data.length : 7 )
     const [startnum, setStart] = useState(0)   
     const handleClick = (e) => {
         if (e.target.className === "slider-left") { 

@@ -17,6 +17,10 @@
     display: block;
     margin-top: 85% ;
 }
+.error {
+    height: 30vh;
+    margin-top: 30vh;
+}
 @media screen and (max-width:860px) {
     .search{
         margin: 0px;

@@ -1,6 +1,7 @@
 .RatesCard_description{
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    width: 35%
 }
 .RatesCard_description:nth-child(2) {
     margin: 0px 20px;
@@ -9,7 +10,6 @@
     margin-right: 20px;
 }
 .RatesCard_description_header{
-    background-color: #FFB64F;
     display: flex;
     justify-content: space-between;
     height: 132px;

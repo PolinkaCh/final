@@ -57,6 +57,9 @@
     color: #949494;
     font-family: 'Inter-Regular','Inter', sans-serif; 
 }
+.search_form_item {
+    height: 110px
+}
 @media screen and (max-width:1300px) {
     .range_input {
         flex-direction: column;

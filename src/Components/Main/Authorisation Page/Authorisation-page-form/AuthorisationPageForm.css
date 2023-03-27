@@ -40,6 +40,7 @@
 .form_input_authorisation{
     width: 379px;
     margin-bottom: 25px;
+    padding: 5px;
 }
 .fieldset {
     border:none;

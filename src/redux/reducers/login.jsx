@@ -5,14 +5,14 @@ const state = {
 
 function login(initialState = state, action){
     switch (action.type){
-      case 'LOGIN': 
+      case 'AUTH': 
         return {...initialState, 
-          login: action.log
+          [action.id]: action.value
         }
-      case 'PASSWORD': 
-        return {...initialState, 
-          password: action.pass
-        }
+      case 'INVALIDLOGIN': 
+      return {...initialState, 
+          errorLogin: action.err
+      }
       case "SIGN_IN_SUCCESS":
         return {...initialState, 
           token: action.payload.accessToken,

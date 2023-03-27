@@ -15,18 +15,17 @@ function SearchForm (props){
     const {searchStart, setSearchVal, setSearchCheckboxes} = props.actions
     const startSearch = (e) => {e.preventDefault ();navigate("results"); searchStart()}
     const setSearchReq = (e) => setSearchVal(e.target.id, e.target.value)
-    const setSearchCheks = (e) => setSearchCheckboxes(e.target.id)
-    
+    const setSearchCheks = (e) => setSearchCheckboxes(e.target.id) 
     let now = new Date().toISOString().split('T')[0]
     return (
         <div className="search_form">
             <form>
                 <fieldset className="search_form_full">
                     <div className="search_form_labels">
-                        <div>
+                        <div className="search_form_item">
                             <label className="form_input_label" htmlFor="inn">ИНН компании<em>*</em></label><br/>
-                            <input className="form_input form_input_search" placeholder="10 цифр" type="text" id="inn" required onChange = {(e) =>{setSearchReq(e)}}/>
-                            <p></p>
+                            <input style={{boxShadow: props.errorMsg? "0px 0px 20px #FF5959": ""}} className="form_input form_input_search" placeholder="10 цифр" type="text" id="inn" required onChange = {(e) =>{setSearchReq(e)}}/>
+                            <div className="error_msg" style={{visibity: props.error? "visible" : "hidden"}}>{props.error? <p>{props.errorMsg}</p> :" "}</div> 
                         </div>
                         <div>
                             <label className="form_input_label" htmlFor="ton">Тональность</label><br/>
@@ -36,16 +35,18 @@ function SearchForm (props){
                                 <option value="negative">Негативная</option>
                             </select>
                         </div>
-                        <div>
+                        <div className="search_form_item">
                             <label className="form_input_label" htmlFor="number_docs">Количество документов в выдаче <em>*</em></label><br/>
-                            <input required className="form_input form_input_search" placeholder="от 1 до 1000" type="number" id="number_docs" min= "1" max="1000" onChange = {(e) => setSearchReq(e)}/>
+                            <input style={{boxShadow: props.errorNum? "0px 0px 20px #FF5959": ""}} required className="form_input form_input_search" placeholder="от 1 до 1000" type="number" id="number_docs" min= "1" max="1000" onChange = {(e) => setSearchReq(e)}/>
+                            <div className="error_msg" style={{visibity: props.errorNum? "visible" : "hidden"}}>{props.errorNum? <p>{props.errorNum}</p> :" "}</div>
                         </div>
-                        <div>
+                        <div className="search_form_item">
                             <label className="form_input_label" htmlFor="range">Диапазон поиска<em>*</em></label><br/>
                             <div className="range_input">
-                                <input required className="form_input form_input_search_date" max = {props.endDate ? props.endDate: now} placeholder="Дата начала" type="date" id="rangeStart" onChange = {(e) => setSearchReq(e)}/>
-                                <input required onChange = {(e)=>{setSearchReq (e)}} className="form_input form_input_search_date" min = {props.startDate ? props.startDate: ""} max = {now} placeholder="Дата конца" type="date" id="rangeEnd"/>
+                                <input style={{boxShadow: props.errorDates? "0px 0px 20px #FF5959": ""}} required className="form_input form_input_search_date" max = {props.endDate ? props.endDate: now} placeholder="Дата начала" type="date" id="rangeStart" onChange = {(e) => setSearchReq(e)}/>
+                                <input style={{boxShadow: props.errorDates? "0px 0px 20px #FF5959": ""}} required onChange = {(e)=>{setSearchReq (e)}} className="form_input form_input_search_date" min = {props.startDate ? props.startDate: ""} max = {now} placeholder="Дата конца" type="date" id="rangeEnd"/>         
                             </div>
+                            <div className="error_msg" style={{visibity: props.errorDates? "visible" : "hidden"}}>{props.errorDates? <p>{props.errorDates}</p> :" "}</div>
                         </div>
                     </div>
                     <div className="search_form_second_column">
@@ -78,7 +79,11 @@ const mapStateToProps = function(state) {
     return {
         search: state.search,
         endDate: state.search.rangeEnd,
-        startDate: state.search.rangeStart
+        startDate: state.search.rangeStart,
+        error: state.search.error,
+        errorMsg: state.search.errorMessage,
+        errorNum: state.search.errorNum,
+        errorDates: state.search.errorDates
     }
   }
 

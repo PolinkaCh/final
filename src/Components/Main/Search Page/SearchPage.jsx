@@ -6,12 +6,16 @@ import {ReactComponent as Human} from "./static-Search-Page/Human3.svg"
 import SearchForm from "./Search-Page-Form/SearchPageForm.jsx"
 import "../Main.css"
 import { connect } from 'react-redux';
-import {useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 
 function SearchPage(props){
     const navigate = useNavigate();
+    const redirectFunc=()=>{
+        navigate("/")
+    }
     return(
         <>
+        {props.isAuth ? 
         <div className='search'>
             <div className='search_info'>
                 <div className='search_info_header'>
@@ -28,8 +32,9 @@ function SearchPage(props){
                 <div className='search_pictures_item'><Folders/></div>
                 <div className='search_pictures_item'><Human/></div>
             </div> 
-        </div> 
+        </div> : <p className="error" onChange={setTimeout(redirectFunc,2000)}>Вы не авторизованы. Сейчас вас перенаправит на главную...</p>}
         </>
+        
     );
 
 }

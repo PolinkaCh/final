@@ -12,11 +12,11 @@ import {Link, useNavigate} from "react-router-dom"
 
 function RegisterForm (props){
     const navigate = useNavigate();
-    const {signInRequest, setLogIn,setPassword} = props.actions
+    const {signInRequest, setAuthVal} = props.actions
     const {login, password} = props
-    const signIn = (e) => {e.preventDefault (); navigate("/search");signInRequest()}
-    const logInDisp = (e) => setLogIn(e.target.value)
-    const passDisp = (e) => setPassword(e.target.value)
+    const signIn = (e) => {e.preventDefault (); navigate("/search");signInRequest()} 
+    const setAuthReq = (e) => setAuthVal(e.target.id, e.target.value)
+
     return(
         <div className="RegisterForm">
             <div className="slider_switcher">
@@ -25,17 +25,19 @@ function RegisterForm (props){
             </div>
             <form id="auth" >
                 <fieldset className="fieldset">
-                    <div className="form_login">
+                    <div className="form_login search_form_item">
                         <p className="form_title"><label htmlFor="login">Логин или номер телефона:</label></p>
-                        <input form="auth" className="form_input form_input_authorisation" id="login" onChange = {(e) => logInDisp(e)} value = {login}></input>
+                        <input style={{boxShadow: props.errorLogin? "0px 0px 20px #FF5959": ""}} form="auth" className="form_input form_input_authorisation" id="login" onChange = {(e) => setAuthReq(e)} value = {login}></input>
+                        <div className="error_msg" style={{visibity: props.errorLogin? "visible" : "hidden"}}>{props.errorLogin? <p>{props.errorLogin}</p> :" "}</div>
                     </div>
-                    <div className="form_password">
+                    <div className="form_password search_form_item">
                         <p className="form_title"><label htmlFor="password">Пароль:</label></p>
-                        <input form="auth" type="password" className="form_input form_input_authorisation" id="password" onChange = {(e)=>passDisp(e)} value = {password}></input>
+                        <input form="auth" type="password" className="form_input form_input_authorisation" id="password" onChange = {(e)=>setAuthReq(e)} value = {password}></input>
+                        <div className="error_msg" style={{visibity: props.errorDates? "visible" : "hidden"}}>{props.errorDates? <p>{props.errorDates}</p> :" "}</div>
                     </div>
                 </fieldset>
                 <div className="form-buttons">
-                    <Link to = "/"><div className="btn-login" form="auth"><Button func={(e)=>signIn(e)} title="Войти"/></div></Link>
+                    <Link to = "/"><div className="btn-login" form="auth"><Button dis={props.search.disabled? true: false} func={(e)=>signIn(e)} title="Войти"/></div></Link>
                     <button className="btn-restore">Восстановить пароль</button>
                 </div>
                 <div className="form_login_through">
@@ -53,5 +55,11 @@ const mapDispatchToProps = (dispatch) => {
      actions: bindActionCreators (Actions,dispatch)
     }
 }
+const mapStateToProps = function(state) {
+    return {
+        search: state.search,
+        errorLogin: state.login.errorLogin
+    }
+  }
 
-export default connect(null, mapDispatchToProps) (RegisterForm)
+export default connect(mapStateToProps, mapDispatchToProps) (RegisterForm)

@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import "../../../Main.css"
 
 function ResultsTable (props){
-    return (<div className="table">
+    const windowInnerWidth = window.innerWidth
+    return (
+    <div className="table">
+      {windowInnerWidth > 800?
         <table>
-            {window.innerWidth>800?
-            <>
             <colgroup style = {{backgroundColor: "#029491"}}/>
             <colgroup style = {{span:"8"}} />         
               <tr> 
@@ -45,16 +46,44 @@ function ResultsTable (props){
                             <td className={props.startnum < props.end ? props.startnum < index && index < props.end ? "active": "not-active":props.startnum < index || index < props.end ? "active": "not-active"} index = {index}  key = {uniqid()}>{report.value}</td>
                     )})}
               </tr>
-            </>:
-            <>
+          </table>
+            :
+          <table>  
+            <thead style = {{backgroundColor: "#029491"}}>
               <tr>
-                <td className="features">Период</td>
-                <td className="features">Всего</td>
-                <td className="features">Риски</td>
+                <th className="features">Период</th>
+                <th className="features">Всего</th>
+                <th className="features">Риски</th>
               </tr>
-            </>
+            </thead>
+            <tbody>
+              <tr>
+              {props.start ? "":
+                    props.hists.data[0].data.map ((report,index) => {
+                        const date = new Date(report.date)
+                        return (
+                            <td className={props.startnum === index ? "active": "not-active"} index = {index} key = {uniqid()}>{`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}</td>
+              )})}  
+              {props.start?
+                    <div className="loader">
+                      <img className="loading" src= {Loading}></img>
+                      <p>Загружаем данные</p>
+                    </div>: 
+                    props.error ? props.errorMessage :
+                    props.hists.data[0].data.map ((report,index) => {
+                        return (
+                            <td className= {props.startnum === index ? "active": "not-active"} index = {index} key = {uniqid()}>{report.value}</td>
+              )})}
+              {props.start ? "":
+                    props.hists.data[1].data.map ((report,index) => {
+                        return (
+                            <td className={props.startnum === index ? "active": "not-active"} index = {index}  key = {uniqid()}>{report.value}</td>
+              )})}
+              </tr>
+            </tbody>
+          </table>           
 }   
-        </table>
+
         </div>)
 } 
 const mapStateToProps = function(state) {

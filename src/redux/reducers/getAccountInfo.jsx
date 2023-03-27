@@ -1,9 +1,10 @@
-function getInfo (initialState= {searchInfo: true}, action){
+function getInfo (initialState= {searchInfo: true, active: ""}, action){
     switch (action.type){
       case 'GET_INFO_SUCCESS': 
         return {...initialState,
           count: action.payload.eventFiltersInfo.usedCompanyCount,
           limit: action.payload.eventFiltersInfo.companyLimit,
+          active: "Beginner"
         }
       case 'GET_INFO_FAILURE': 
         return {...initialState,

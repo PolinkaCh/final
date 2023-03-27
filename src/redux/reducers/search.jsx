@@ -21,6 +21,23 @@ function search (initialState = state, action){
             [action.id]: action.value,
             searchStart: !state.searchStart
         } 
+        case 'INNVALID': 
+        return {...initialState,
+            validINN: action.result
+        } 
+        case 'INNVALIDERROR': 
+        return {...initialState,
+            error: action.error,
+            errorMessage: action.errorMessage
+        } 
+        case 'INVALIDNUM': 
+        return {...initialState,
+            errorNum: action.err
+        } 
+        case 'INVALIDDATES': 
+        return {...initialState,
+            errorDates: action.err
+        } 
         case 'DISABLED': 
         return {...initialState,
             disabled: action.dis
