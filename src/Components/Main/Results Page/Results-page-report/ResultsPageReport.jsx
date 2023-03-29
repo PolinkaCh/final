@@ -14,11 +14,11 @@ function ResultsPageReport (props){
     const [startnum, setStart] = useState(0)   
     const handleClick = (e) => {
         if (e.target.className === "slider-left") { 
-            setStart(startnum === 0 ? props.hists.data[0].data.length: startnum - 1)
-            setEnd(end === 0 ? props.hists.data[0].data.length: end - 1)
+            setStart(startnum === 0 ? props.hists.data[0].data.length-1: startnum - 1)
+            setEnd(end === 0 ? props.hists.data[0].data.length-1: end - 1)
         } else {
-            setStart(startnum === props.hists.data[0].data.length ? 0: startnum + 1)      
-            setEnd(end === props.hists.data[0].data.length ? 0: end +1) 
+            setStart(startnum === props.hists.data[0].data.length-1 ? 0: startnum + 1)      
+            setEnd(end === props.hists.data[0].data.length-1 ? 0: end +1) 
         }
     }
     return (
@@ -26,9 +26,9 @@ function ResultsPageReport (props){
             <h1 className="header report_header">Общая сводка</h1>
             <p className="report_paragraph">Найдено {props.start ? "": props.hists.data[0].data.map(item => item.value).reduce((sum, current) => sum + current, 0)} вариантов</p> 
             <div className="report_table">
-            <button className='btn-slider' onClick= {handleClick}><img className='slider-left' src = {LeftArrow}></img></button>
-                <ResultsTable end= {end} startnum= {startnum}/>
-            <button className='btn-slider' onClick= {handleClick}><img className='slider-right' src = {RightArrow}></img></button>
+                <button className='btn-slider' onClick= {handleClick}><img className='slider-left' src = {LeftArrow}></img></button>
+                    <ResultsTable end= {end} startnum= {startnum}/>
+                <button className='btn-slider' onClick= {handleClick}><img className='slider-right' src = {RightArrow}></img></button>
             </div>
         </div>
     )

@@ -25,6 +25,19 @@ td {
     border-radius: 5px;
     padding-right: 5px;
 }
+@media screen and (max-width: 800px) {
+    .table{
+        padding: 0px;
+        margin-left: -10px;
+    }
+    table{
+        width:80px;
+    }
+    .td {
+        padding: 18px 0px;
+    }
+    
+}
 
 
 

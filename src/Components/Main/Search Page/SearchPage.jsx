@@ -15,7 +15,7 @@ function SearchPage(props){
     }
     return(
         <>
-        {props.isAuth ? 
+        {props.authStart ? "" : props.isAuth ? 
         <div className='search'>
             <div className='search_info'>
                 <div className='search_info_header'>
@@ -40,7 +40,8 @@ function SearchPage(props){
 }
 const mapStateToProps = function(state) {
     return {
-      isAuth: state.login.isAuth
+      isAuth: state.login.isAuth,
+      authStart: state.login.authStart
     }
   }
 

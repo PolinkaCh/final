@@ -1,4 +1,7 @@
 const state= {
+    Docs: localStorage.getItem("docs") ?  JSON.parse(localStorage.docs): "",
+    searchDocs: localStorage.getItem("docsNum") ? JSON.parse(localStorage.docsNum): "",
+    histograms: localStorage.getItem("hists") ? JSON.parse(localStorage.hists): "",
     inn: '',
     number_docs: '',
     rangeStart: '',
@@ -42,10 +45,6 @@ function search (initialState = state, action){
         return {...initialState,
             disabled: action.dis
         } 
-        // case 'SEARCHCHECKBOX': 
-        // return {...initialState,
-        //     [action.id]: action.value
-        // }
         case 'HISTSEARCHSTART': 
         return {...initialState,
             searchStart: action.val

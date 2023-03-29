@@ -13,9 +13,12 @@ import {Link, useNavigate} from "react-router-dom"
 function RegisterForm (props){
     const navigate = useNavigate();
     const {signInRequest, setAuthVal} = props.actions
-    const {login, password} = props
-    const signIn = (e) => {e.preventDefault (); navigate("/search");signInRequest()} 
+    const {login, password,isAuth} = props
+    const signIn = (e) => {e.preventDefault ();
+         signInRequest();
+         navigate("/search")}
     const setAuthReq = (e) => setAuthVal(e.target.id, e.target.value)
+
 
     return(
         <div className="RegisterForm">
@@ -32,8 +35,8 @@ function RegisterForm (props){
                     </div>
                     <div className="form_password search_form_item">
                         <p className="form_title"><label htmlFor="password">Пароль:</label></p>
-                        <input form="auth" type="password" className="form_input form_input_authorisation" id="password" onChange = {(e)=>setAuthReq(e)} value = {password}></input>
-                        <div className="error_msg" style={{visibity: props.errorDates? "visible" : "hidden"}}>{props.errorDates? <p>{props.errorDates}</p> :" "}</div>
+                        <input style={{boxShadow: props.errorAuth? "0px 0px 20px #FF5959": ""}} form="auth" type="password" className="form_input form_input_authorisation" id="password" onChange = {(e)=>setAuthReq(e)} value = {password}></input>
+                        <div className="error_msg" style={{visibity: props.errorAuth? "visible" : "hidden"}}>{props.errorAuth? <p>{props.errorAuth}</p> :" "}</div>
                     </div>
                 </fieldset>
                 <div className="form-buttons">
@@ -58,7 +61,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = function(state) {
     return {
         search: state.search,
-        errorLogin: state.login.errorLogin
+        errorLogin: state.login.errorLogin,
+        errorAuth: state.login.errorMessage,
+        isAuth: state.login.isAuth
     }
   }
 

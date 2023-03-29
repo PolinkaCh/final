@@ -3,8 +3,10 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     width: 35vw;
+    height:max-content;
     display: flex;
     flex-direction: column;
+    margin-bottom: 40px;
 }
 .non-active {
     display: none;
@@ -18,9 +20,13 @@
     letter-spacing: 0.02em;
     color: #949494;
     display: flex;
+    height: 30px;
 }
 .document_dateInfo_item:first-child{
     margin-right: 14px;
+}
+.doc_header{
+    height: fit-content;
 }
 .document_header{
     font-size: 26px;
@@ -49,6 +55,13 @@
     letter-spacing: 0.02em;
     color: #000000;
     opacity: 0.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 270px;
+    display: -webkit-box;
+    -webkit-line-clamp: 14;
+    -webkit-box-orient: vertical;
+    width: 35vw;
 }
 .document_button {
     margin-top: 32px;
@@ -57,23 +70,41 @@
     background: #7CE3E1;
     border-radius: 5px;
 }
+.document_button a{
+    color: black;
+    text-decoration: none;
+}
 .document_end {
     display: flex;
     position: relative;
 }
 .document_end_paragraph {
     position: absolute;
-    right:0;
-    bottom: -10px;
+    right: -29vw;
+    bottom: -42vh; 
 }
 @media  screen and (max-width:860px) {
     .document{
-        width:100%;
+        width:73vw;
         margin-bottom: 20px;
     }
     .document_button {
         width: 195px
     }
-    
+    .document_text, .document_img, .doc_header{
+        width:73vw
+    }
+    .document_end_paragraph {
+        right: -19vw;
+        bottom: -38vh; 
+    }
+    .document_dateInfo_item a{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 55vw;
+        display: block;
+    }
 }
+
+
 

@@ -4,7 +4,8 @@ function getInfo (initialState= {searchInfo: true, active: ""}, action){
         return {...initialState,
           count: action.payload.eventFiltersInfo.usedCompanyCount,
           limit: action.payload.eventFiltersInfo.companyLimit,
-          active: "Beginner"
+          active: "Beginner",
+          error: false
         }
       case 'GET_INFO_FAILURE': 
         return {...initialState,

@@ -54,9 +54,14 @@ export const setAuthVal = (id, value)=> {
         }
 }
 }
-
+export const authStart = () => {   
+    return {
+        type: "AUTHSTART"
+    }
+}
 export const signInRequest = () => {
     return (dispatch, getState) => {
+        dispatch (authStart())
         const {login,search} = getState()
         const userData = {
             login: login.login,
@@ -73,6 +78,7 @@ export const signInRequest = () => {
               }
          })
         .catch((error) => { 
+            console.log (error)
             dispatch(signInFailure(error.message))
           });
     }}
@@ -399,6 +405,7 @@ export const searchStart = () => {
         .then((response) => {
             dispatch(histogramSuccess(response.data))
             console.log (response.data)
+            localStorage.setItem ('hists', JSON.stringify(response.data));
         })
         .catch((error) => { 
             dispatch(histogramFailure(error.message))
@@ -418,6 +425,7 @@ export const searchDocs = (searchData) => {
         .then((response) => {
             dispatch(searchSuccess(response.data))
             dispatch(getDocs(response.data))
+            localStorage.setItem ('docsNum', JSON.stringify(response.data));
         })
         .catch((error) => { 
             dispatch(searchFailure(error.message))
@@ -443,6 +451,7 @@ export const getDocs = () => {
               dispatch(getDocsSuccess(response.data))
               dispatch(histogramSearchEnd(!search.searchStart))
               console.log (response.data)
+              localStorage.setItem ('docs', JSON.stringify(response.data));
           })
           .catch((error) => { 
               dispatch(getDocsFailure(error.message))

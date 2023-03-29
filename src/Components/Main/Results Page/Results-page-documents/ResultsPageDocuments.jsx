@@ -12,9 +12,9 @@ import Loading from "./../static-result-page/loading.svg"
 function ResultsPageDocuments (props) {
     const [num, setnum] =useState(2)
     const [dis, disappear] = useState("active")
-    const handleClick = (e) => {
+    const handleClick = () => {
         setnum(num + 2)
-        if (num > props.docs.length|| num === props.docs.length) {
+        if (num > props.docs.length || num === props.docs.length) {
             disappear("non-active")
         }
     }

@@ -14,8 +14,10 @@
         font-size: 18px;
         line-height: 22px;
     }
-    .results_startInfo_pic {
-        width:100%
+    .results_startInfo_pic svg {
+        width:90vw;
+        display: block;
+        height: 40vh;
     }
 
 }
