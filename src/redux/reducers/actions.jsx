@@ -98,6 +98,9 @@ export const setPassword = (pass) => {
 
 export const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('hists');
+    localStorage.removeItem('docs');
+    localStorage.removeItem('docsNum');
     return {
         type: "LOGOUT"
     }

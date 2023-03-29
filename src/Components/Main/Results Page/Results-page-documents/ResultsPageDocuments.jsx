@@ -3,20 +3,20 @@ import "./ResultsPageDocuments.css"
 import "../../Main.css"
 import DocumentCard from "./Results-page-document-card/ResultsPageDocumentCard";
 import Documents from "./Results-page-document-card/documents.json"
-import Button from "../../Button"
+import Button from "../../Button.jsx"
 import uniqid from "uniqid"
 import { connect } from 'react-redux';
 import { useState } from "react";
 import Loading from "./../static-result-page/loading.svg"
 
 function ResultsPageDocuments (props) {
-    const [num, setnum] =useState(2)
+    const [numm, setnum] =useState(2)
     const [dis, disappear] = useState("active")
     const handleClick = () => {
-        setnum(num + 2)
-        if (num > props.docs.length || num === props.docs.length) {
+        if (numm > props.docs.length || numm === props.docs.length) {
             disappear("non-active")
         }
+        setnum(numm + 2)
     }
     return (
     <>
@@ -29,12 +29,12 @@ function ResultsPageDocuments (props) {
             <div className="resultsPageDocuments_docs">
             {props.docs.map((document,index) => {
                 return (
-                    <DocumentCard key = {uniqid()} index= {index} num ={num} document = {document}/>
+                    <DocumentCard key = {uniqid()} index= {index} num ={numm} document = {document}/>
                 )
             })}
             </div>
             <div className={`btn-docs ${dis}`}>
-                <Button func = {handleClick} title="Показать больше"/>
+                <Button dis={false} func = {handleClick} title="Показать больше"/>
             </div>
             </>
             }
