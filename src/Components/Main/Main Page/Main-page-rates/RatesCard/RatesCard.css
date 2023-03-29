@@ -110,7 +110,7 @@
         width: 90%;
     }  
 }
-@media  screen and (max-width: 860px) {
+@media  screen and (max-width: 1140px) {
     .RatesCard_description:nth-child(2) {
         margin: 40px 0px;
     }

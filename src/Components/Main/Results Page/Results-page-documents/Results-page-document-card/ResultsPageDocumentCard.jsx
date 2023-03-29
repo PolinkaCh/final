@@ -1,6 +1,5 @@
 import React from "react";
 import "./ResultsPageDocumentCard.css"
-import photo from "./static-documents/photo.jpg"
 
 function DocumentCard (props){  
     const {document} = props
@@ -11,15 +10,14 @@ function DocumentCard (props){
     const list=[]
 
     const scanNode = xmlDoc.querySelector("scandoc")
-    const k = scanNode.textContent.toString().search(/img src=".*"/)
+    const k = scanNode.textContent.toString().search(/img src=".*?"/)
     const h = scanNode.textContent.toString().slice(k+9, -2)
     const sentenceNode = scanNode.querySelectorAll("sentence")
     sentenceNode.forEach((item)=>{
         if (item.childNodes){
             const n = list.push(Array.from(item.childNodes).map(item=>item.textContent.toString().replace(/<.*>*>/g,"")))
             return n    
-        }
-        else{
+        }else{
             return  
         }
     })

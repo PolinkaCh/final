@@ -5,6 +5,7 @@
     align-items: center;
     padding:25px 45px;
     margin:0 -60px;
+    width: 100vw
 }
 .info_font {
     color: white;
@@ -20,6 +21,7 @@
     .footer {
         padding: 25px 18px; 
         margin: -15px;
+        width: 100vw
     }
     .footer_logo {
         width: 111px;

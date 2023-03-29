@@ -10,7 +10,7 @@ import Report from './report.json'
 
 
 function ResultsPageReport (props){
-    const [end, setEnd] = useState(props.start ? "": props.hists.data[0].data.length-1)
+    const [end, setEnd] = useState(props.start ? 0: props.hists.data[0].data.length-1)
     const [startnum, setStart] = useState(0)   
     const handleClick = (e) => {
         if (e.target.className === "slider-left") { 
@@ -18,7 +18,7 @@ function ResultsPageReport (props){
             setEnd(end === 0 ? props.hists.data[0].data.length - 1 : end - 1)
         } else if (e.target.className === "slider-right") {
             setStart(startnum === props.hists.data[0].data.length-1 ? 0: startnum + 1)      
-            setEnd(end === (props.hists.data[0].data.length-1) ? 0: end +1) 
+            setEnd(!props.hists.data[0].data.length ? 0: end === (props.hists.data[0].data.length-1) ? 0: end +1) 
         }
     }
     return (

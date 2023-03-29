@@ -27,7 +27,7 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width:860px){
+@media screen and (max-width:1040px){
     .whyWe_header{
         font-size:28px;
         line-height:34px;
@@ -44,6 +44,7 @@
     }
     .fullCards {
         width: 75%;
+        justify-content: center;
     }
     .whyWe_slider {
         margin:80px -14px

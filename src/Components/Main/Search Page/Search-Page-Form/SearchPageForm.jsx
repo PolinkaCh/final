@@ -54,7 +54,7 @@ function SearchForm (props){
                             {Checkboxes.map(checkbox => {
                                 return(
                                 <p key = {uniqid()}>
-                                    <input type="checkbox" id={checkbox.name} name={checkbox.name} value = "true" onChange = {(e)=>{setSearchCheks (e)}}/>
+                                    <input type="checkbox" id={checkbox.name} name={checkbox.name} onChange = {(e)=>{setSearchCheks (e)}}/>
                                     <label className="form_input_label" htmlFor={checkbox.name}>{checkbox.text}</label>
                                 </p>)
                             })}

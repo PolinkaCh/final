@@ -99,3 +99,21 @@
         width: 100%;
     }
 }
+@media screen and (min-width: 860px) and (max-width: 1110px){
+    .btn-search{
+        width:230px;
+    }
+    .search_form_btn{
+        bottom: -90px;
+        right: 0;
+    }
+}
+@media screen and (min-width: 1110px) and (max-width: 1500px){
+    .btn-search{
+        width:250px;
+    }
+    .search_form_btn{
+        bottom: -50px;
+        right: 0;
+    }
+}

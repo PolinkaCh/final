@@ -14,11 +14,11 @@ function MainPageWhyWe(){
         const windowInnerWidth = window.innerWidth
         if (e.target.className === "slider-left") { 
             console.log (windowInnerWidth)
-            windowInnerWidth < 800 ?
+            windowInnerWidth < 860 ?
             setNum(num === 0 ? Items.Items.length-1: num-1):
             setNum(num === 0 ? Items.Items.length-3: num-1)
         } else {
-            windowInnerWidth < 800 ?
+            windowInnerWidth < 860 ?
             setNum(num === Items.Items.length - 1 ? 0: num+1):
             setNum(num === Items.Items.length - 3 ? 0: num+1)
         }

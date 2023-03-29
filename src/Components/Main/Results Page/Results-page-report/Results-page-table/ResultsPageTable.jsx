@@ -67,7 +67,6 @@ function ResultsTable (props){
               {props.start?
                     <div className="loader">
                       <img className="loading" src= {Loading}></img>
-                      <p>Загружаем данные</p>
                     </div>: 
                     props.error ? props.errorMessage :
                     props.hists.data[0].data.map ((report,index) => {
