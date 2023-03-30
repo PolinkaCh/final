@@ -31,7 +31,7 @@ function search (initialState = state, action){
         case 'INNVALIDERROR': 
         return {...initialState,
             error: action.error,
-            errorMessage: action.errorMessage
+            errorMsg: action.errorMessage
         } 
         case 'INVALIDNUM': 
         return {...initialState,

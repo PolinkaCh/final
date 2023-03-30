@@ -24,7 +24,7 @@ function ResultsPageDocuments (props) {
         <div className="docs">
             {props.start?
             <img className="loading"  src= {Loading}></img>
-            : 
+            : !props.docs.length ? <div className="error">{props.errorMessage}</div> :
             <>
             <div className="resultsPageDocuments_docs">
             {props.docs.map((document,index) => {
@@ -44,7 +44,8 @@ function ResultsPageDocuments (props) {
 const mapStateToProps = function(state) {
     return {
       start: state.search.searchStart,
-      docs: state.search.Docs
+      docs: state.search.Docs,
+      errorMessage: state.search.errorMessage
     }
   }
 

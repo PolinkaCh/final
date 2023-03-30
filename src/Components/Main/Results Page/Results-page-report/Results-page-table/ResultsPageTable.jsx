@@ -8,6 +8,7 @@ import "../../../Main.css"
 
 function ResultsTable (props){
     const windowInnerWidth = window.innerWidth
+    console.log(props.errorMessage)
     return (
     <div className="table">
       {windowInnerWidth > 800?
@@ -17,6 +18,7 @@ function ResultsTable (props){
               <tr> 
                     <td className="features">Период</td>
                     {props.start ? "":
+                    !props.hists.data.length ? '' :
                     props.hists.data[0].data.map ((report,index) => {
                         const date = new Date(report.date)
                         return (
@@ -30,7 +32,7 @@ function ResultsTable (props){
                       <img className="loading" src= {Loading}></img>
                       <p>Загружаем данные</p>
                     </div>: 
-                    props.error ? props.errorMessage :
+                    !props.hists.data.length ? <div className="error_table">{props.errorMessage}</div> :
                     props.hists.data[0].data.map ((report,index) => {
                         return (
                             <td className={props.startnum < props.end ? props.startnum < index && index < props.end ? "active": "not-active":props.startnum < index || index < props.end ? "active": "not-active"} index = {index} key = {uniqid()}>{report.value}</td>
@@ -41,6 +43,7 @@ function ResultsTable (props){
               <tr>
                     <td className="features">Риски</td>
                     {props.start ? "":
+                    !props.hists.data.length ? '' :
                     props.hists.data[1].data.map ((report,index) => {
                         return (
                             <td className={props.startnum < props.end ? props.startnum < index && index < props.end ? "active": "not-active":props.startnum < index || index < props.end ? "active": "not-active"} index = {index}  key = {uniqid()}>{report.value}</td>
@@ -59,24 +62,26 @@ function ResultsTable (props){
             <tbody>
               <tr>
               {props.start ? "":
+                !props.hists.data.length  ? "" :
                     props.hists.data[0].data.map ((report,index) => {
                         const date = new Date(report.date)
                         return (
-                            <td className={props.startnum === index ? "active": "not-active"} index = {index} key = {uniqid()}>{`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}</td>
+                            <td className={props.startnum+1 === index ? "active": "not-active"} index = {index} key = {uniqid()}>{`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}</td>
               )})}  
-              {props.start?
+              {props.start?  
                     <div className="loader">
                       <img className="loading" src= {Loading}></img>
                     </div>: 
-                    props.error ? props.errorMessage :
+                    !props.hists.data.length ? <div>{props.errorMessage}</div> :
                     props.hists.data[0].data.map ((report,index) => {
                         return (
-                            <td className= {props.startnum === index ? "active": "not-active"} index = {index} key = {uniqid()}>{report.value}</td>
+                            <td className= {props.startnum+1 === index ? "active": "not-active"} index = {index} key = {uniqid()}>{report.value}</td>
               )})}
               {props.start ? "":
+                 !props.hists.data.length ? "" :
                     props.hists.data[1].data.map ((report,index) => {
                         return (
-                            <td className={props.startnum === index ? "active": "not-active"} index = {index}  key = {uniqid()}>{report.value}</td>
+                            <td className={props.startnum+1 === index ? "active": "not-active"} index = {index}  key = {uniqid()}>{report.value}</td>
               )})}
               </tr>
             </tbody>

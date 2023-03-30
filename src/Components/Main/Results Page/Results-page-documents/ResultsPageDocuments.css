@@ -22,6 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 @media  screen and (max-width:860px) {
     .resultsPageDocuments_docs {

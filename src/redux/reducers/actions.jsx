@@ -338,7 +338,7 @@ export const validateInn =(inn)=> {
 
 export const searchStart = () => {
     return (dispatch, getState) => {  
-        const {search, login} = getState();    
+        const {search, login} = getState();  
         const searchData = {
             "issueDateInterval": {
               "startDate": search.rangeStart,
@@ -458,6 +458,7 @@ export const getDocs = () => {
           })
           .catch((error) => { 
               dispatch(getDocsFailure(error.message))
+              dispatch(histogramSearchEnd(!search.searchStart))
            });
 }}
 

@@ -10,8 +10,8 @@ function DocumentCard (props){
     const list=[]
 
     const scanNode = xmlDoc.querySelector("scandoc")
-    const k = scanNode.textContent.toString().search(/img src=".*?"/)
-    const h = scanNode.textContent.toString().slice(k+9, -2)
+    const k = scanNode.textContent.toString().search(/>(<img src=".*)"[>\s]/)
+    const h = scanNode.textContent.toString().slice(k+11,-2)
     const sentenceNode = scanNode.querySelectorAll("sentence")
     sentenceNode.forEach((item)=>{
         if (item.childNodes){
@@ -22,7 +22,7 @@ function DocumentCard (props){
         }
     })
     
-    console.log(scanNode)
+    console.log(h)
     return (
         <div className={`document ${props.index < props.num ? "active": "non-active"}`}index= {props.index}>
             <div className="doc_header">

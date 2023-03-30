@@ -12,10 +12,18 @@ import {useNavigate, Link} from "react-router-dom"
 
 function SearchForm (props){
     const navigate = useNavigate();
+    const [checkedName,setCheckName] = useState([])
     const {searchStart, setSearchVal, setSearchCheckboxes} = props.actions
     const startSearch = (e) => {e.preventDefault ();navigate("results"); searchStart()}
     const setSearchReq = (e) => setSearchVal(e.target.id, e.target.value)
-    const setSearchCheks = (e) => setSearchCheckboxes(e.target.id) 
+    const setSearchCheks = (e) =>{
+        if (!checkedName.includes(e.target.id)){
+            setCheckName([...checkedName, e.target.id ]);}
+        else{
+            let index = checkedName.indexOf(e.target.id)
+            setCheckName([...checkedName.slice(0, index), ...checkedName.slice(index + 1)]);
+        }
+        setSearchCheckboxes(e.target.id)}
     let now = new Date().toISOString().split('T')[0]
     return (
         <div className="search_form">
@@ -54,7 +62,7 @@ function SearchForm (props){
                             {Checkboxes.map(checkbox => {
                                 return(
                                 <p key = {uniqid()}>
-                                    <input type="checkbox" id={checkbox.name} name={checkbox.name} onChange = {(e)=>{setSearchCheks (e)}}/>
+                                    <input type="checkbox" checked= {checkedName.includes(checkbox.name)? true: false} id={checkbox.name} name={checkbox.name} onChange = {(e)=>{setSearchCheks (e)}}/>
                                     <label className="form_input_label" htmlFor={checkbox.name}>{checkbox.text}</label>
                                 </p>)
                             })}
@@ -81,7 +89,7 @@ const mapStateToProps = function(state) {
         endDate: state.search.rangeEnd,
         startDate: state.search.rangeStart,
         error: state.search.error,
-        errorMsg: state.search.errorMessage,
+        errorMsg: state.search.errorMsg,
         errorNum: state.search.errorNum,
         errorDates: state.search.errorDates
     }
